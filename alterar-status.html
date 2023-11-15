@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+    <a href="index.html">Voltar à Página Principal</a>
+    <title>Alterar Status do Usuário</title>
+</head>
+<body>
+<h1>Alterar Status do Usuário</h1>
+
+
+<form id="changeStatusForm">
+    <label for="userId">ID do Usuário:</label>
+    <input type="text" id="userId" required>
+    <button type="button" onclick="buscarStatus()">Buscar Status</button>
+
+    <div id="statusDetails"></div>
+</form>
+
+<script>
+    function buscarStatus() {
+        const userId = document.getElementById('userId').value;
+
+        fetch(`https://api-bank-3fim.onrender.com/api/usuarios/${userId}`)
+            .then(response => response.json())
+            .then(user => {
+                const statusDetails = document.getElementById('statusDetails');
+                statusDetails.innerHTML = '';
+
+                if (user) {
+                    const statusText = user.ativo ? 'ativo' : 'inativo';
+                    statusDetails.innerHTML = `<p>Status Atual: ${statusText}</p>`;
+
+                    const confirmMessage = user.ativo
+                        ? 'Deseja inativar este usuário?'
+                        : 'Deseja ativar este usuário?';
+
+                    const confirmation = confirm(confirmMessage);
+
+                    if (confirmation) {
+                        alterarStatus(userId, !user.ativo);
+                    }
+                } else {
+                    statusDetails.textContent = 'Usuário não encontrado.';
+                }
+            })
+            .catch(error => {
+                console.error('Erro ao buscar status do usuário:', error);
+                alert('Erro ao buscar status do usuário. Verifique o console para mais detalhes.');
+            });
+    }
+
+    function alterarStatus(userId, novoStatus) {
+        const statusDetails = document.getElementById('statusDetails');
+
+        fetch(`https://api-bank-3fim.onrender.com/api/usuarios/${userId}/status`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                ativo: novoStatus,
+            }),
+        })
+            .then(response => response.json())
+            .then(user => {
+                statusDetails.innerHTML = `<p>Status Alterado com Sucesso. Novo Status: ${user.ativo ? 'ativo' : 'inativo'}</p>`;
+            })
+            .catch(error => {
+                console.error('Erro ao alterar status do usuário:', error);
+                statusDetails.textContent = 'Erro ao alterar status do usuário. Verifique o console para mais detalhes.';
+            });
+    }
+</script>
+</body>
+</html>
+

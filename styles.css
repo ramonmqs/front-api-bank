@@ -1,0 +1,104 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+.wrapper {
+    display: flex;
+    height: 100vh;
+}
+
+.sidebar {
+    width: 200px; /* Largura da barra lateral */
+    background-color: #5fa3ec; /* Cor de fundo da barra lateral */
+    color: white; /* Cor do texto na barra lateral */
+    margin: 0;
+    padding: 5px;
+}
+
+.main-content {
+    flex: 1;
+    overflow: hidden;
+}
+
+
+
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+form {
+    background-color: #fff; /* Cor de fundo branco para o formulário */
+    padding: 20px;
+    margin: 20px auto;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+}
+
+input, textarea {
+    width: 20%;
+    padding: 8px;
+    margin-bottom: 16px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    background-color: #007BFF; /* Cor de fundo azul */
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3; /* Cor de fundo azul mais escura ao passar o mouse */
+}
+
+/* Estilo adicional para destacar os campos obrigatórios */
+input:required,
+textarea:required {
+    border-color: #dc3545; /* Cor vermelha para campos obrigatórios não preenchidos */
+}
+
+/* Estilo para mensagens de erro */
+#error-message {
+    color: #dc3545; /* Cor vermelha para mensagens de erro */
+    margin-top: 5px;
+}
+
+/* Estilo para o título da página */
+h1 {
+    color: #333;
+    text-align: center;
+}
+
+/* Estilo para o contêiner de detalhes do usuário na página de busca de usuário */
+#userDetails {
+    margin-top: 20px;
+}
+
+/* Estilo para a lista de usuários na página de listar usuários */
+#listaUsuarios {
+    margin-top: 20px;
+}
+
+/* Estilo para os botões de ação */
+button[type="button"] {
+    background-color: #28a745; /* Cor de fundo verde para botões de ação */
+}
+
+button[type="button"]:hover {
+    background-color: #218838; /* Cor de fundo verde mais escura ao passar o mouse */
+}
+

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+    <a href="index.html">Voltar à Página Principal</a>
+    <title>Realizar Depósito</title>
+</head>
+<body>
+<h1>Realizar Depósito</h1>
+
+
+<form id="depositForm">
+    <label for="usuarioId">ID do Usuário:</label>
+    <input type="number" id="usuarioId" required>
+
+    <label for="valor">Valor do Depósito:</label>
+    <input type="number" id="valor" required>
+
+    <button type="button" onclick="realizarDeposito()">Realizar Depósito</button>
+</form>
+
+<script>
+    function realizarDeposito() {
+        const usuarioId = document.getElementById('usuarioId').value;
+        const valor = document.getElementById('valor').value;
+
+        fetch('https://api-bank-3fim.onrender.com/api/depositar', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                usuarioId: parseInt(usuarioId),
+                valor: parseFloat(valor),
+            }),
+        })
+            .then(response => {
+                if (response.ok) {
+                    alert('Depósito realizado com sucesso!');
+                } else {
+                    alert('Erro ao realizar depósito. Verifique o console para mais detalhes.');
+                }
+            })
+            .catch(error => {
+                console.error('Erro ao realizar depósito:', error);
+                alert('Erro ao realizar depósito. Verifique o console para mais detalhes.');
+            });
+    }
+</script>
+</body>
+</html>

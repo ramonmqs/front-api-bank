@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+    <a href="index.html">Voltar à Página Principal</a>
+    <title>Inativar Usuário</title>
+</head>
+<body>
+<h1>Inativar Usuário</h1>
+
+
+<form id="deactivateUserForm">
+    <label for="userId">ID do Usuário:</label>
+    <input type="number" id="userId" required>
+
+    <button type="button" onclick="inativarUsuario()">Inativar Usuário</button>
+</form>
+
+<script>
+    function inativarUsuario() {
+        const userId = document.getElementById('userId').value;
+
+        fetch(`https://api-bank-3fim.onrender.com/api/usuarios/${userId}/inativar`, {
+            method: 'PUT',
+        })
+            .then(response => {
+                if (response.ok) {
+                    alert('Usuário inativado com sucesso!');
+                } else {
+                    alert('Erro ao inativar usuário. Verifique o console para mais detalhes.');
+                }
+            })
+            .catch(error => {
+                console.error('Erro ao inativar usuário:', error);
+                alert('Erro ao inativar usuário. Verifique o console para mais detalhes.');
+            });
+    }
+</script>
+</body>
+</html>

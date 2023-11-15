@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+    <a href="index.html">Voltar à Página Principal</a>
+    <title>Realizar Transferência</title>
+</head>
+<body>
+<h1>Realizar Transferência</h1>
+
+
+<form id="transferForm">
+    <label for="remetenteId">ID do Remetente:</label>
+    <input type="number" id="remetenteId" required>
+
+    <label for="destinatarioId">ID do Destinatário:</label>
+    <input type="number" id="destinatarioId" required>
+
+    <label for="valor">Valor:</label>
+    <input type="number" id="valor" required>
+
+    <button type="button" onclick="realizarTransferencia()">Realizar Transferência</button>
+</form>
+
+<script>
+    function realizarTransferencia() {
+        const remetenteId = document.getElementById('remetenteId').value;
+        const destinatarioId = document.getElementById('destinatarioId').value;
+        const valor = document.getElementById('valor').value;
+
+        fetch('https://api-bank-3fim.onrender.com/api/transferir', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                remetenteId: parseInt(remetenteId),
+                destinatarioId: parseInt(destinatarioId),
+                valor: parseFloat(valor),
+            }),
+        })
+            .then(response => {
+                if (response.ok) {
+                    alert('Transferência realizada com sucesso!');
+                } else {
+                    alert('Erro ao realizar transferência. Verifique o console para mais detalhes.');
+                }
+            })
+            .catch(error => {
+                console.error('Erro ao realizar transferência:', error);
+                alert('Erro ao realizar transferência. Verifique o console para mais detalhes.');
+            });
+    }
+</script>
+</body>
+</html>

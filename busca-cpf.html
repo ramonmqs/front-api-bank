@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+    <a href="index.html">Voltar à Página Principal</a>
+    <title>Buscar Usuário por CPF</title>
+</head>
+<body>
+<h1>Buscar Usuário por CPF</h1>
+
+
+<form id="searchForm">
+    <label for="cpfInput">CPF:</label>
+    <input type="text" id="cpfInput" required>
+    <button type="submit">Buscar</button>
+</form>
+
+<div id="userDetails"></div>
+
+<script>
+    document.getElementById('searchForm').addEventListener('submit', buscarUsuario);
+
+    function buscarUsuario(event) {
+        event.preventDefault();
+
+        const cpf = document.getElementById('cpfInput').value;
+
+        fetch(`https://api-bank-3fim.onrender.com/api/usuarios/${cpf}`)
+            .then(response => response.json())
+            .then(user => {
+                const userDetails = document.getElementById('userDetails');
+                userDetails.innerHTML = '';
+
+                if (user) {
+                    const statusText = user.ativo ? 'Ativo' : 'Inativo';
+                    userDetails.innerHTML = `
+                        <p><strong>Nome:</strong> ${user.nome}</p>
+                        <p><strong>Data de Nascimento:</strong> ${user.dataNascimento}</p>
+                        <p><strong>Telefone:</strong> ${user.telefone}</p>
+                        <p><strong>CPF:</strong> ${user.cpf}</p>
+                        <p><strong>Endereço:</strong> ${user.endereco}</p>
+                        <p><strong>Saldo:</strong> ${user.saldo}</p>
+                        <p><strong>Status:</strong> ${statusText}</p>
+                    `;
+                } else {
+                    userDetails.innerHTML = '<p>Usuário não encontrado.</p>';
+                }
+            })
+            .catch(error => {
+                console.error('Erro ao buscar usuário por CPF:', error);
+                alert('Erro ao buscar usuário por CPF. Verifique o console para mais detalhes.');
+            });
+    }
+</script>
+</body>
+</html>

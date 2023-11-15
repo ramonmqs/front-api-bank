@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+    <a href="index.html">Voltar à Página Principal</a>
+    <title>Buscar Usuário</title>
+</head>
+<body>
+<h1>Buscar Usuário</h1>
+
+
+<form id="findUserForm">
+    <label for="userIdentifier">CPF ou ID do Usuário:</label>
+    <input type="text" id="userIdentifier" required>
+
+    <button type="button" onclick="buscarUsuario()">Buscar Usuário</button>
+</form>
+<div id="userDetails"></div>
+<div id="errorMessage" style="color: red;"></div>
+
+<script>
+    function buscarUsuario() {
+        const userIdentifier = document.getElementById('userIdentifier').value;
+
+        // Validar se o identificador é um número ou CPF válido
+        if (isNaN(userIdentifier) && !validateCPF(userIdentifier)) {
+            displayErrorMessage('CPF ou ID inválido.');
+            return;
+        }
+
+        fetch(`https://api-bank-3fim.onrender.com/api/usuarios/${userIdentifier}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Erro ao buscar usuário: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(user => {
+                const userDetails = document.getElementById('userDetails');
+                userDetails.innerHTML = '';
+
+                if (user) {
+                    userDetails.textContent = `ID: ${user.id}, Nome: ${user.nome}, Saldo: ${user.saldo}, Ativo: ${user.ativo ? 'Sim' : 'Não'}`;
+                } else {
+                    userDetails.textContent = 'Usuário não encontrado.';
+                }
+            })
+            .catch(error => {
+                console.error('Erro ao buscar usuário:', error);
+                displayErrorMessage('Erro ao buscar usuário. Verifique o console para mais detalhes.');
+            });
+    }
+
+
+    // Função para exibir mensagem de erro
+    function displayErrorMessage(message) {
+        const errorMessage = document.getElementById('errorMessage');
+        errorMessage.textContent = message;
+    }
+</script>
+</body>
+</html>
+

@@ -3,7 +3,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     // Criar novo usuário
-    document.getElementById("criarUsuarioForm").addEventListener("submit", function (event) {
+    const criarUsuarioForm = document.getElementById("criarUsuarioForm")
+    criarUsuarioForm && criarUsuarioForm.addEventListener("submit", function (event) {
         event.preventDefault();
         criarUsuario();
     });
@@ -15,6 +16,9 @@ function listarUsuarios() {
         .then(response => response.json())
         .then(data => {
             const listaUsuarios = document.getElementById("listaUsuarios");
+            
+            if (!listaUsuarios) return
+
             listaUsuarios.innerHTML = "<h2>Lista de Usuários</h2>";
 
             if (data.length > 0) {
@@ -102,25 +106,29 @@ function consultarSaldo() {
 }
 
 // Transferência
-document.getElementById("transferenciaForm").addEventListener("submit", function (event) {
+const transferenciaForm = document.getElementById("transferenciaForm")
+transferenciaForm && transferenciaForm.addEventListener("submit", function (event) {
     event.preventDefault();
     realizarTransferencia();
 });
 
 // Validar Compra
-document.getElementById("validarCompraForm").addEventListener("submit", function (event) {
+const validarCompraForm = document.getElementById("validarCompraForm");
+validarCompraForm && validarCompraForm.addEventListener("submit", function (event) {
     event.preventDefault();
     validarCompra();
 });
 
 // Inativar Usuário
-document.getElementById("inativarUsuarioForm").addEventListener("submit", function (event) {
+const inativarUsuarioForm = document.getElementById("inativarUsuarioForm")
+inativarUsuarioForm && inativarUsuarioForm.addEventListener("submit", function (event) {
     event.preventDefault();
     inativarUsuario();
 });
 
 // Buscar Usuário por CPF ou ID
-document.getElementById("findUserForm").addEventListener("submit", function (event) {
+const findUserForm = document.getElementById("findUserForm")
+findUserForm && findUserForm.addEventListener("submit", function (event) {
     event.preventDefault();
     buscarUsuario();
 });
@@ -158,13 +166,15 @@ function buscarUsuario() {
 }
 
 // Alterar Status do Usuário
-document.getElementById("alterarStatusForm").addEventListener("submit", function (event) {
+const alterarStatusForm = document.getElementById("alterarStatusForm")
+alterarStatusForm && alterarStatusForm.addEventListener("submit", function (event) {
     event.preventDefault();
     alterarStatusUsuario();
 });
 
 // Página Inicial
-document.getElementById("paginaInicialBtn").addEventListener("click", function () {
+const paginaInicialBtn = document.getElementById("paginaInicialBtn")
+paginaInicialBtn && paginaInicialBtn.addEventListener("click", function () {
     // Lógica para retornar à página inicial
     window.location.href = "index.html";
 });

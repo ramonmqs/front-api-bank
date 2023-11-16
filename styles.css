@@ -2,6 +2,9 @@ body, html {
     margin: 0;
     padding: 0;
     height: 100%;
+    font-family: 'Arial', sans-serif;
+    background-color: rgba(8, 8, 8, 0.774);
+    color: white;
 }
 
 .wrapper {
@@ -10,32 +13,142 @@ body, html {
 }
 
 .sidebar {
-    width: 200px; /* Largura da barra lateral */
-    background-color: #5fa3ec; /* Cor de fundo da barra lateral */
-    color: white; /* Cor do texto na barra lateral */
+    width: 200px;
+    background-color: rgba(138, 77, 255, 0.8);
+    color: white;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.nav-links {
+    list-style: none;
+    padding: 0;
     margin: 0;
-    padding: 5px;
+}
+
+.nav-links li {
+    margin-bottom: 10px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: white;
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.nav-links a:hover {
+    background-color: rgba(43, 206, 198, 0.875)
 }
 
 .main-content {
     flex: 1;
     overflow: hidden;
+    display: flex;
+    justify-content: flex-start;
+    background: url('img/1699911938204-thumbnail.png') center center/70% no-repeat fixed;
+    background-color: rgba(51, 49, 49, 0.332);
+}
+
+.main-content img {
+   width: 400px;
+}
+
+
+.main_header {
+    background-color: transparent;
+    color: white;
+    padding: 10px 0;
+    text-align: center;
 }
 
 
 
+.main_header_logo {
+    padding: 10px; /* Adicione espaçamento conforme necessário */
+    text-align: left; /* Alinha o logotipo à esquerda */
+    width: 50%;
+}
 
 .container {
     max-width: 1200px;
     margin: 0 auto;
 }
 
+.section-seu-codigo {
+    text-align: center;
+}
+
+.main_footer {
+    text-align: center;
+    padding: 10px;
+}
+
+/* Restante do seu CSS permanece inalterado */
+
 form {
-    background-color: #fff; /* Cor de fundo branco para o formulário */
+    background-color: purple;
     padding: 20px;
     margin: 20px auto;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 600px; /* Defina a largura máxima do formulário */
+    margin-left: auto; /* Centraliza o formulário na tela */
+    margin-right: auto;
+}
+
+/* Estilo para os rótulos dos inputs */
+form label {
+    display: block;
+    margin-bottom: 8px;
+    text-align: left;
+}
+
+/* Estilo para os inputs e textareas */
+form input, form textarea {
+    width: calc(100% - 16px); /* Define a largura com espaço para o padding */
+    padding: 8px;
+    margin-bottom: 16px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    display: inline-block;
+}
+
+form button {
+    background-color: #007BFF;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Estilo adicional para destacar os campos obrigatórios */
+form input:required,
+form textarea:required {
+    border-color: #dc3545;
+}
+
+/* Estilo para mensagens de erro */
+#error-message {
+    color: #dc3545;
+    margin-top: 5px;
+}
+
+/* Estilo para o título da página */
+h1 {
+    color: rgba(43, 206, 198, 0.875);
+    text-align: center;
+}
+
+a {
+    color:white;
 }
 
 label {
@@ -78,10 +191,10 @@ textarea:required {
 }
 
 /* Estilo para o título da página */
-h1 {
+/* h1 {
     color: #333;
     text-align: center;
-}
+} */
 
 /* Estilo para o contêiner de detalhes do usuário na página de busca de usuário */
 #userDetails {
@@ -95,10 +208,20 @@ h1 {
 
 /* Estilo para os botões de ação */
 button[type="button"] {
-    background-color: #28a745; /* Cor de fundo verde para botões de ação */
+    background-color: rgba(43, 206, 198, 0.875); /* Cor de fundo verde para botões de ação */
 }
 
 button[type="button"]:hover {
-    background-color: #218838; /* Cor de fundo verde mais escura ao passar o mouse */
+    background-color: rgba(43, 206, 198, 0.875); /* Cor de fundo verde mais escura ao passar o mouse */
+}
+
+.logo {
+    max-width: 100px; /* Ajuste a largura máxima conforme necessário */
+    display: block;
+}
+
+.main_header_logo {
+    padding: 10px; /* Adicione espaçamento conforme necessário */
+    text-align: left; /* Alinha o logotipo à esquerda */
 }
 

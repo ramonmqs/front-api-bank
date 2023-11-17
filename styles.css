@@ -7,6 +7,7 @@ body, html {
     color: white;
 }
 
+
 .wrapper {
     display: flex;
     height: 100vh;
@@ -14,7 +15,7 @@ body, html {
 
 .sidebar {
     width: 200px;
-    background-color: rgba(138, 77, 255, 0.8);
+    background-color: rgb(123, 99, 255, 0.8);
     color: white;
     padding: 10px;
     display: flex;
@@ -50,13 +51,17 @@ body, html {
     overflow: hidden;
     display: flex;
     justify-content: flex-start;
-    background: url('img/1699911938204-thumbnail.png') center center/70% no-repeat fixed;
+    background: url('img/1699911938204-thumbnail.png') center center/25% no-repeat fixed;
     background-color: rgba(51, 49, 49, 0.332);
 }
 
 .main-content img {
-    width: 370px;
+   width: 370px;
    height: 740px;
+}
+
+#btnvoltar{
+    padding: 10px;
 }
 
 
